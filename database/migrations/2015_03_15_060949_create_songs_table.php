@@ -17,6 +17,7 @@ class CreateSongsTable extends Migration {
 			$table->increments('id');
             $table->string('title');
             $table->text('lyrics')->nullable();
+            $table->string('slug')->unique();
 			$table->timestamps();
 		});
 	}
