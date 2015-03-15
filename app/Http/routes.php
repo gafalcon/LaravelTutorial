@@ -18,6 +18,8 @@ Route::get('home', 'HomeController@index');
 Route::get('/pages/', 'PagesController@index');
 Route::get('/pages/about', 'PagesController@about');
 
+get('songs', 'SongsController@index');
+get('songs/{id}', 'SongsController@show');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
