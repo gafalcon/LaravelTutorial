@@ -4,7 +4,7 @@
     <h1>Edit {{ $song->title }}</h1>
 
     <?= Form::model($song, [
-	    'url' => 'songs/'.$song->slug,
+	    'url' => action('SongsController@update', $song->slug),
 	    'method' => 'PATCH'
 	]) ?>
     <div class="form-group">

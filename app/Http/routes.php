@@ -28,7 +28,11 @@ $router->resource('songs', 'SongsController');
 //     'only' => ['index', 'show', 'edit', 'update']
 //     'except'=> []
 // ]);
-// get('songs', 'SongsController@index');
+
+// Using named route
+//get('songs', ['as' => 'songs_path', 'uses' => 'SongsController']);
+
+
 // get('songs/{song}', 'SongsController@show');
 // get('songs/{song}/edit', 'SongsController@edit');
 // patch('songs/{song}', 'SongsController@update');

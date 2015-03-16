@@ -8,7 +8,7 @@
 	<h3>Lyrics</h3>
 	<p><pre>{{ $song->lyrics }}</pre></p>
     @endif
-    <a href="{{$song->slug}}/edit">Edit this song</a> |
-    <a href="/songs">Back To list</a>
+    <a href="{{ action('SongsController@edit', $song->slug) }}">Edit this song</a> |
+    <a href="{{ action('SongsController@index') }}">Back To list</a>
 
 @stop

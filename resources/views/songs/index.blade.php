@@ -4,7 +4,7 @@
 
     <ul>
 	@foreach ($songs as $song)
-	    <li><a href="/songs/{{ $song->slug }}">{{$song->title}}</a></li>
+		<li><a href="{{ action('SongsController@show', $song->slug) }}">{{$song->title}}</a></li>
 	@endforeach
     </ul>
 
