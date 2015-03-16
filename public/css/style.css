@@ -1,2 +1,7 @@
-body {
+.btn-danger{
+    float:right;
 }
+.form-inline{
+    display:inline;
+}
+    

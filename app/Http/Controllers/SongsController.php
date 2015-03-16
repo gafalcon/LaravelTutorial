@@ -54,4 +54,9 @@ class SongsController extends Controller {
         //return $song->title;
     }
     
+    public function destroy(Song $song){
+
+        $song->delete();
+        return redirect('songs');
+    }
 }

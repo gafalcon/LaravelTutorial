@@ -2,9 +2,14 @@
 
 @section('content')
 
-    <ul>
+    <ul class="list-group">
 	@foreach ($songs as $song)
-		<li><a href="{{ action('SongsController@show', $song->slug) }}">{{$song->title}}</a></li>
+		<li class="list-group-item">
+
+			<a href="{{ action('SongsController@show', $song->slug) }}">{{$song->title}}</a>
+			{!! delete_form(['songs.destroy',$song->slug]) !!}
+		</li>
+
 	@endforeach
     </ul>
 
