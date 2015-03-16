@@ -8,4 +8,6 @@
 	@endforeach
     </ul>
 
+    <a class="btn btn-primary" href="{{ route('songs.create') }}">Create New Song</a>
+
 @stop

@@ -27,6 +27,17 @@ class SongsController extends Controller {
         return view('songs.show', compact('song'));
     }
 
+    public function create(){
+        return view('songs.create');
+
+    }
+
+    public function store(Request $request){
+        $this->song->create($request->all());
+
+        return redirect()->route('songs.index');
+    }
+    
     public function edit(Song $song){
         //return 'Edit the song with title: '.$song->title;
         return view('songs.edit', compact('song'));
