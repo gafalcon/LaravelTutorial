@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateSongRequest;
 use App\Http\Controllers\Controller;
 use App\Song;
 
@@ -32,7 +33,7 @@ class SongsController extends Controller {
 
     }
 
-    public function store(Request $request){
+    public function store(CreateSongRequest $request){
         $this->song->create($request->all());
 
         return redirect()->route('songs.index');
