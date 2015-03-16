@@ -20,14 +20,18 @@ Route::get('/pages/about', 'PagesController@about');
 
 
 //Route::model('song', 'App\Song'); // binding route to a model id
-Route::bind('song', function($slug){
+Route::bind('songs', function($slug){
     return App\Song::where('slug', $slug)->first();
 });
-
-get('songs', 'SongsController@index');
-get('songs/{song}', 'SongsController@show');
-get('songs/{song}/edit', 'SongsController@edit');
-patch('songs/{song}', 'SongsController@update');
+$router->resource('songs', 'SongsController');
+// $router->resource('songs', 'SongsController', [
+//     'only' => ['index', 'show', 'edit', 'update']
+//     'except'=> []
+// ]);
+// get('songs', 'SongsController@index');
+// get('songs/{song}', 'SongsController@show');
+// get('songs/{song}/edit', 'SongsController@edit');
+// patch('songs/{song}', 'SongsController@update');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
