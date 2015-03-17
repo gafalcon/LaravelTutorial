@@ -25,6 +25,12 @@ Route::bind('songs', function($slug){
     return App\Song::where('slug', $slug)->first();
 });
 $router->resource('songs', 'SongsController');
+
+Route::get('articles','ArticlesController@index');
+Route::get('articles/create','ArticlesController@create');
+Route::get('articles/{id}/edit','ArticlesController@edit');
+Route::get('articles/{id}','ArticlesController@show');
+Route::post('articles', 'ArticlesController@store');
 // $router->resource('songs', 'SongsController', [
 //     'only' => ['index', 'show', 'edit', 'update']
 //     'except'=> []
