@@ -16,10 +16,15 @@ class SongsController extends Controller {
     public function index(Song $song){
         //$songs =Song::get(); 
 
-        $songs = $song->get(); //Using dependency injection
-        //dd($songs); Same as ==== die(vardump($songs));
+        $this->test($song);
         return view('songs.index', compact('songs'));
 
+    }
+
+    private function test($song)
+    {
+        $songs = $song->get(); //Using dependency injection
+        //dd($songs); Same as ==== die(vardump($songs));
     }
 
     public function show(Song $song){ //$song binded through route

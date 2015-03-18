@@ -3,10 +3,10 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article as Article;
-//use Illuminate\Http\Request;
-use Request; //Facade for the previous
+use Illuminate\Http\Request;
+//use Request; //Facade for the previous
 use Carbon\Carbon;
-
+use App\Http\Requests\ArticleRequest;
 class ArticlesController extends Controller {
 
 	//
@@ -25,7 +25,7 @@ class ArticlesController extends Controller {
         return view('articles.index', compact('articles'));
 
     }
-
+    
     public function show($id){
         $article = Article::findOrFail($id);
 
@@ -36,21 +36,36 @@ class ArticlesController extends Controller {
 
     }
 
+    //Automatic validation with the CreateArticleRequest
     public function create(){
         return view('articles.create');
     }
 
-    public function store(){
+    public function store(ArticleRequest $request){
         //Request::get('title');
 
+        // $this->validate($request, [
+        //     'title' => 'required|min:3',
+        //     'body' => 'required',
+        //     'published_at' => 'required|date'
+        // ]);
         // Dont need to worry about sql injection
-        Article::create(Request::all());
+        Article::create($request->all());
         return redirect('articles');
     }
 
     public function edit($id){
         $article = Article::findOrFail($id); 
         return view('articles.edit', compact('article'));
+    }
+
+    function update($id, ArticleRequest $request)
+    {
+        $article = Article::findOrFail($id);
+
+        $article->update($request->all());
+
+        return redirect('articles');
     }
 
 }
