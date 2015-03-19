@@ -1,4 +1,7 @@
 @extends('app')
+@section('page_title')
+	Create Article
+@stop
 
 @section('content')
 	<div class="container">

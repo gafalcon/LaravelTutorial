@@ -6,7 +6,7 @@ use Carbon\Carbon;
 class Article extends Model {
 
 	//
-    protected $fillable = ['title', 'body', 'published_at'];
+    protected $fillable = ['title', 'body', 'published_at', 'user_id'];
 
     protected $dates = ['published_at'];
 
@@ -24,5 +24,16 @@ class Article extends Model {
     //QueryScope
     public function scopeUnpublished($query){
         $query->where('published_at', '>', Carbon::now());
+    }
+
+    /**
+     * An article is owned by a use
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     *
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

@@ -5,7 +5,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="favicon.png" rel="shortcut icon"/>
-	<title>Laravel</title>
+	<title>
+		@yield('page_title', 'Laravel tutorial')
+	</title>
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
@@ -36,7 +38,12 @@
 				<ul class="nav navbar-nav">
 					<li><a href="{{ url('/') }}">Home</a></li>
 				</ul>
-
+				<ul class="nav navbar-nav">
+					<li><a href="{{ url('/articles') }}">Articles</a></li>
+				</ul>
+				<ul class="nav navbar-nav">
+					<li><a href="{{ url('/songs') }}">Songs</a></li>
+				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					@if (Auth::guest())
 						<li><a href="{{ url('/auth/login') }}">Login</a></li>

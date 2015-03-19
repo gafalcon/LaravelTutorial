@@ -25,7 +25,14 @@ class ArticlesController extends Controller {
         return view('articles.index', compact('articles'));
 
     }
-    
+
+    /**
+     * Show an article
+     *
+     * @param articles id
+     *
+     * @return view
+     */
     public function show($id){
         $article = Article::findOrFail($id);
 
@@ -41,6 +48,14 @@ class ArticlesController extends Controller {
         return view('articles.create');
     }
 
+    
+    /**
+     * Saves a new article
+     *
+     * @param ArticleRequest
+     *
+     * @return view
+     */
     public function store(ArticleRequest $request){
         //Request::get('title');
 
@@ -50,7 +65,10 @@ class ArticlesController extends Controller {
         //     'published_at' => 'required|date'
         // ]);
         // Dont need to worry about sql injection
-        Article::create($request->all());
+        $article = new Article($request->all());
+
+        \Auth::user()->articles()->save($article);
+        //Article::create($request->all());
         return redirect('articles');
     }
 
@@ -59,6 +77,14 @@ class ArticlesController extends Controller {
         return view('articles.edit', compact('article'));
     }
 
+    /**
+     * Updates an article
+     *
+     * @param articles id
+     * @param App\Http\Requests\ArticleRequest
+     *
+     * @return view
+     */
     function update($id, ArticleRequest $request)
     {
         $article = Article::findOrFail($id);

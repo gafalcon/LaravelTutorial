@@ -15,4 +15,5 @@
 	{!! Form::input('date','published_at', date('Y/m/d'), ['class' => 'form-control']) !!}
 </div>
 
+
 {!! Form::submit($submit_text, ['class' => 'btn btn-primary']) !!}

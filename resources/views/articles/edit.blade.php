@@ -1,4 +1,7 @@
 @extends('app')
+@section('page_title')
+	Edit Article-Laravel Tutorial
+@stop
 
 @section('content')
 	<div class="container">
