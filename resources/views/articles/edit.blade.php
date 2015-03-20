@@ -4,7 +4,6 @@
 @stop
 
 @section('content')
-	<div class="container">
 		<h1>Edit article</h1>
 		<hr/>
 		{!! Form::model($article, [
@@ -20,5 +19,4 @@
 		<br/>
 		@include('errors.list')
 		
-	</div>
 @stop

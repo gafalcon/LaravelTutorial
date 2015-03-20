@@ -75,8 +75,17 @@ class ArticlesController extends Controller {
         $article = new Article($request->all());
 
         \Auth::user()->articles()->save($article);
+
+        // Creating flash messages
+        //\Session::flash('flash_message', 'Your article has been created!');
+
         //Article::create($request->all());
-        return redirect('articles');
+        flash('Article was created');
+        return redirect('articles');/*->with([
+            'flash_message' => 'Your article has been created',
+            'flash_message_important' => true
+
+            ]);*/
     }
 
     public function edit(Article $article){
@@ -95,6 +104,8 @@ class ArticlesController extends Controller {
     {
 
         $article->update($request->all());
+
+        flash()->success('The article was edited');
 
         return redirect('articles');
     }

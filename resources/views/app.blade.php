@@ -61,10 +61,28 @@
 		</div>
 	</nav>
 
-	@yield('content')
+	<div class="container">
+		<!--  @if( Session::has('flash_message'))
+			<div class="alert alert-success {{ session()->has('flash_message_important') ? 'alert-important' : '' }}">
+				@if(session()->has('flash_message_important'))
+				<button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
+				@endif
+				{{ Session::get('flash_message') }}
+			</div>
+		@endif -->
 
+		@include('flash::message')
+
+		@yield('content')
+	
+	</div>
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+	<script>
+	//$('div.alert').not('.alert-important').delay(3000).slideUp(300);
+	$('#flash-overlay-modal').modal();
+	</script>
 </body>
 </html>

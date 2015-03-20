@@ -1,7 +1,6 @@
 @extends('app')
 
 @section('content')
-	<div class="container">
 		<h1>Articles</h1>
 		<hr/>
 		@foreach ($articles as $article)
@@ -20,5 +19,4 @@
 
 		<br/>
 		<a class="btn btn-primary" href="/articles/create">Create New Article</a>
-	</div>
 @stop

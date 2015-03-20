@@ -36,4 +36,15 @@ class Article extends Model {
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     * Get the tags associated with the article
+     *
+     *
+     * @return ManyToMany relation 
+     */
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag'); 
+    }
 }
