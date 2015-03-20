@@ -38,4 +38,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany('App\Article');
     }
 
+    /**
+     * Determines if logged user is a manager
+     *
+     *
+     * @return boolean
+     */
+    public function isATeamManager()
+    {
+        return true;
+    }
 }

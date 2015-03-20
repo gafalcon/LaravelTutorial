@@ -9,6 +9,12 @@ use Carbon\Carbon;
 use App\Http\Requests\ArticleRequest;
 class ArticlesController extends Controller {
 
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'only' => 'create'
+        ]); 
+    }
 	//
     public function index(Article $article){
         // $articles =  $article
@@ -33,8 +39,7 @@ class ArticlesController extends Controller {
      *
      * @return view
      */
-    public function show($id){
-        $article = Article::findOrFail($id);
+    public function show(Article $article){
 
         // if(is_null($article)){
         //     abort(404);
@@ -45,6 +50,8 @@ class ArticlesController extends Controller {
 
     //Automatic validation with the CreateArticleRequest
     public function create(){
+        // if(\Auth::guest())
+        //     return redirect('articles');
         return view('articles.create');
     }
 
@@ -72,8 +79,7 @@ class ArticlesController extends Controller {
         return redirect('articles');
     }
 
-    public function edit($id){
-        $article = Article::findOrFail($id); 
+    public function edit(Article $article){
         return view('articles.edit', compact('article'));
     }
 
@@ -85,9 +91,8 @@ class ArticlesController extends Controller {
      *
      * @return view
      */
-    function update($id, ArticleRequest $request)
+    function update(Article $article, ArticleRequest $request)
     {
-        $article = Article::findOrFail($id);
 
         $article->update($request->all());
 
