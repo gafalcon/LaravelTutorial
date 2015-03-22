@@ -9,11 +9,10 @@
 		@yield('page_title', 'Laravel tutorial')
 	</title>
 
-	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/all.css') }}" rel="stylesheet">
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -63,26 +62,28 @@
 
 	<div class="container">
 		<!--  @if( Session::has('flash_message'))
-			<div class="alert alert-success {{ session()->has('flash_message_important') ? 'alert-important' : '' }}">
-				@if(session()->has('flash_message_important'))
-				<button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
-				@endif
-				{{ Session::get('flash_message') }}
-			</div>
+		<div class="alert alert-success {{ session()->has('flash_message_important') ? 'alert-important' : '' }}">
+		@if(session()->has('flash_message_important'))
+		<button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    @endif
+		    {{ Session::get('flash_message') }}
+		</div>
 		@endif -->
 
 		@include('flash::message')
 
 		@yield('content')
-	
-	</div>
-	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		
 
+		</div>
+
+		<!-- Scripts -->
+
+		<script src="{{ asset('js/all.js') }}"></script>
 	<script>
 	//$('div.alert').not('.alert-important').delay(3000).slideUp(300);
 	$('#flash-overlay-modal').modal();
 	</script>
+	@yield('footer')
 </body>
 </html>

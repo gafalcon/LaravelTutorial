@@ -44,7 +44,8 @@ class ArticlesController extends Controller {
         // if(is_null($article)){
         //     abort(404);
         // }
-        return view('articles.show', compact('article'));
+        $tags = $article->tags;
+        return view('articles.show', compact('article', 'tags'));
 
     }
 
@@ -52,7 +53,9 @@ class ArticlesController extends Controller {
     public function create(){
         // if(\Auth::guest())
         //     return redirect('articles');
-        return view('articles.create');
+
+        $tags = \App\Tag::lists('name','id');
+        return view('articles.create', compact('tags'));
     }
 
     
@@ -74,7 +77,10 @@ class ArticlesController extends Controller {
         // Dont need to worry about sql injection
         $article = new Article($request->all());
 
+
         \Auth::user()->articles()->save($article);
+
+        $article->tags()->attach($request->input('tag_list'));
 
         // Creating flash messages
         //\Session::flash('flash_message', 'Your article has been created!');
@@ -89,7 +95,8 @@ class ArticlesController extends Controller {
     }
 
     public function edit(Article $article){
-        return view('articles.edit', compact('article'));
+        $tags = \App\Tag::lists('name','id');
+        return view('articles.edit', compact('article', 'tags'));
     }
 
     /**
@@ -104,6 +111,7 @@ class ArticlesController extends Controller {
     {
 
         $article->update($request->all());
+        $article->tags()->sync((array) $request->input('tag_list'));
 
         flash()->success('The article was edited');
 
